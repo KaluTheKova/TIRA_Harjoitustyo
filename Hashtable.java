@@ -81,10 +81,6 @@ public class Hashtable {
             counter++;
         }
         // Resize?
-    } 
-
-    public void find(Object value) {
-        
     }
     
     // Increase the table size. 
