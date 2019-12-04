@@ -110,10 +110,10 @@ public class Hashtable {
         // Linear approach for now
         for (int i = 0; i < table.length; i++) {
             int counter = 0;
-            Object value = table[i].getValue(); // Value to check
+            int value = Integer.valueOf((String) table[i].getValue()); // Value to check
 
             for (int j = 0; j < table.length; j++) { // Check if more instances found
-                if (table[j].getValue() == value) {
+                if (Integer.valueOf((String) table[j].getValue()) == value) {
                     counter++;
                 }
             }
