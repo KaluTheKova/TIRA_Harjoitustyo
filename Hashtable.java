@@ -109,17 +109,30 @@ public class Hashtable {
         
         // Linear approach for now
         for (int i = 0; i < table.length; i++) {
-            int counter = 0;
-            int value = Integer.valueOf((String) table[i].getValue()); // Value to check
 
-            for (int j = 0; j < table.length; j++) { // Check if more instances found
-                if (Integer.valueOf((String) table[j].getValue()) == value) {
-                    counter++;
+            // Skip empty entries
+            if (table[i].getValue() == EMPTY) {
+                System.out.println("EMPTYYYYYY I"); // DEBUG
+                continue;
+            } else {
+                int counter = 0;
+                int value = Integer.valueOf((String) table[i].getValue()); // Value to check
+    
+                for (int j = 0; j < table.length; j++) { // Check if more instances found
+                    // Skip empty entries
+                    if (table[j].getValue() == EMPTY) {
+                        System.out.println("EMPTYYYYYY J"); // DEBUG
+                        continue;
+                    } else {
+                        if (Integer.valueOf((String) table[j].getValue()) == value) {
+                            counter++;
+                        }
+                    }
                 }
+                results[i][0] = value;
+                results[i][1] = counter;
+                counter = 0; // Reset
             }
-            results[i][0] = value;
-            results[i][1] = counter;
-            counter = 0; // Reset
         }
 
         // Print test
