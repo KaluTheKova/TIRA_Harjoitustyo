@@ -32,15 +32,19 @@ public class Tira2019
 		return values;
 	}
 	
-	private void writeOutput() {
-		int esim1=5;
-		int	esim2=1;
-		String outputrow = esim1+ " "+esim2;
+	private void writeOutput(int[][] data, String outputFilename) {
 		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter("outp.txt")); 		
-				//bw.write(outputrow);
-			//bw.newLine();
-			bw.write(outputrow);
+			BufferedWriter bw = new BufferedWriter(new FileWriter(outputFilename)); 		
+			for (int i = 0; i < data.length; i++) {
+				if (data[i][0] == 0) // Null skip
+					continue;
+
+				int column1 = data[i][0];
+				int column2 = data[i][1];
+				String outputrow = column1+ " "+column2 + "\n";
+				bw.write(outputrow);
+			}
+			//bw.write(output);
 			bw.close();
 		} catch (IOException e) {
 			System.err.format("IOException: %s%n", e);
@@ -109,43 +113,18 @@ public class Tira2019
 
 		int[][] resultsXOR = new int[hashtable.size()][2];
 		resultsXOR = hashtable.XOR(setA, setB);
-		
+
 		System.out.println("\nCLEARING\n");
 		hashtable.clear();
 
-		// Ohjelma kysyy alkion poistoa ennen tiedostojen kirjoittamista.
+		// You can remove a value from hash table with this method.
+		//hashtable.remove(value);
 
+		System.out.println("Writing results");
+		ht.writeOutput(resultsOR, "or.txt");
+		ht.writeOutput(resultsAND, "and.txt");
+		ht.writeOutput(resultsXOR, "xor.txt");
 
-
-		/*
-		hashtable.insert(1);
-		hashtable.insert(2);
-		hashtable.insert(3);
-		hashtable.insert(4);
-		hashtable.insert(5);
-		hashtable.insert(6);
-		hashtable.insert(7);
-		hashtable.insert(8);
-		hashtable.insert(9);
-		hashtable.insert(10); // 10
-		hashtable.insert(3);
-		hashtable.insert(1);
-		System.out.println();
-		System.out.println("TABLE IS:");
-		for (int i = 0; i < hashtable.table.length; i++) {
-			System.out.println(hashtable.table[i].getValue());
-		}
-
-		hashtable.remove(10);
-		hashtable.remove(1);
-		hashtable.remove(1);
-		hashtable.remove(1);
-		hashtable.remove(1);
-		*/
-		/*
-		System.out.println();
-		System.out.println("TABLE AFTER REMOVING IS:");
-		hashtable.printTable();
-		*/
+		System.out.println("Finished writing.");
 	}
 }
