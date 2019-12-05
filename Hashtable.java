@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hashtable {
     // Array based hashtable that uses open addressing for solving collisions.
     
@@ -33,16 +36,16 @@ public class Hashtable {
 
       
     // Returns a hash.
-    private int hash(Object value) {
+    private int hash(String value) {
         //int hashIndex =  (int) value % table.length; // Convert object to int.
-        int hashIndex = Integer.valueOf((String)value) % table.length; // Convert string object to int.
+        int hashIndex = Integer.valueOf(value) % table.length; // Convert string to int.
         return hashIndex;
     }
     
     /*** CLASS METHODS ***/
     
     // Insertion. Linear probing.
-    public void insert(Object value) {
+    public void insert(String value) {
         int hashIndex = hash(value);
 
         while (true) {          
@@ -62,7 +65,7 @@ public class Hashtable {
         }
     }
     // Remove. Linear probing.
-    public void remove(Object value) {
+    public void remove(String value) {
         int hashIndex = hash(value);
         int counter = 0; // To prevent infinite loop
 
@@ -80,7 +83,6 @@ public class Hashtable {
             hashIndex = (hashIndex + 1) % table.length; // Linear probing.
             counter++;
         }
-        // Resize?
     }
     
     // Increase the table size. 
@@ -105,39 +107,54 @@ public class Hashtable {
     
     
     public int OR() {
-        Object[][] results = new Object[table.length][2];
+        int[][] results = new int[table.length][2];
+        List<String> duplicates = new ArrayList<String>(); // For storing duplicates
+        String valueString;
+        int valueInt;
         
         // Linear approach for now
         for (int i = 0; i < table.length; i++) {
 
             // Skip empty entries
-            if (table[i].getValue() == EMPTY) {
-                System.out.println("EMPTYYYYYY I"); // DEBUG
+            if (table[i].getValue() == null) {
+                //System.out.println("EMPTYYYYYY I"); // DEBUG
                 continue;
             } else {
                 int counter = 0;
-                int value = Integer.valueOf((String) table[i].getValue()); // Value to check
+                valueString = table[i].getValue();  // Value to check in duplicates
+                valueInt = Integer.valueOf((String) table[i].getValue()); // Value to do the rest with
+                
+                // If valueString is already in duplicate array, then skip this iteration
+                if (duplicates.contains(valueString)) {
+                    //System.out.println("DUPLICATE " + valueString); // DEBUG
+                    continue;
+                }
+                duplicates.add(valueString);
     
                 for (int j = 0; j < table.length; j++) { // Check if more instances found
                     // Skip empty entries
-                    if (table[j].getValue() == EMPTY) {
-                        System.out.println("EMPTYYYYYY J"); // DEBUG
+                    if (table[j].getValue() == null) {
+                        //System.out.println("EMPTYYYYYY J"); // DEBUG
                         continue;
                     } else {
-                        if (Integer.valueOf((String) table[j].getValue()) == value) {
+                        if (Integer.valueOf((String) table[j].getValue()) == valueInt) {
                             counter++;
                         }
                     }
                 }
-                results[i][0] = value;
+                results[i][0] = valueInt;
                 results[i][1] = counter;
                 counter = 0; // Reset
             }
         }
 
-        // Print test
+        // Print results
         System.out.println("OR OPERATION");
         for (int i = 0; i < table.length; i++) {
+            if (results[i][0] == 0) {
+                //System.out.println("SKIPPISTAE"); // DEBUG
+                continue;
+            }
             System.out.println(results[i][0] + " " + results[i][1]);
         }
 

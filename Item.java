@@ -3,36 +3,36 @@ public class Item {
     Kinda silly that we don't really need keys here. */
     
     // Attributes
-    private Object key;
-    private Object value;
+    private String key;
+    private String value;
 
     /*
     // Constructor
-    public Item(Object key, Object value) {
+    public Item(String key, String value) {
         this.key = key;
         this.value = value;
     }
     */
     // Constructor
-    public Item(Object value) {
+    public Item(String value) {
         this.value = value;
     }
     
     // Getters
-    private Object getKey() {
+    private String getKey() {
         return key;
     }
 
-    public Object getValue() {
+    public String getValue() {
         return value;
     }
 
     // Setters
-    private void setKey(Object key) {
+    private void setKey(String key) {
         this.key = key;
     }
 
-    public void setValue(Object value) {
+    public void setValue(String value) {
         this.value = value;
     }
 }

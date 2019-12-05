@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Tira2019
 {
-	private Object[] readInput(String filename) {
+	private String[] readInput(String filename) {
 		String line;
 		List<String> values = new ArrayList<String>();
 		
@@ -30,13 +30,13 @@ public class Tira2019
 		}
 		//System.out.println(values); // DEBUG
 		
-		Object[] objects = new Object[values.size()];
+		String[] arr = new String[values.size()];
 
 		// Save list values to Object array because yes.
 		for (int i = 0; i < values.size(); i++) {
-			objects[i] = values.get(i);
+			arr[i] = values.get(i);
 		}
-		return objects;
+		return arr;
 	}
 	
 private void writeOutput()
@@ -59,8 +59,8 @@ private void writeOutput()
 // MAIN
 public static void main(String[] args)
 	{
-		Object[] setA;
-		Object[] setB;
+		String[] setA;
+		String[] setB;
 
 		Tira2019 ht=new Tira2019();   
 		setA = ht.readInput("setA.txt");
@@ -78,7 +78,7 @@ public static void main(String[] args)
 			hashtable.insert(setB[i]);
 		}
 		System.out.println();
-		System.out.println("TABLE IS:");
+		System.out.println("THE TABLE IS:");
 		hashtable.printTable();
 		System.out.println();
 
