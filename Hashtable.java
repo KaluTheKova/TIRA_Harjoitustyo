@@ -13,7 +13,7 @@ public class Hashtable {
     
     /**
      * Create a new hashtable populated with EMPTY Items.
-     *  Default capacity 10.
+     * Default capacity 10.
      */
     public Hashtable() {
         table = new Item[capacity];
@@ -55,7 +55,6 @@ public class Hashtable {
         if (value == null) // Null check
             return 0;
 
-        //System.out.println("Hashing " + value + " with table length " + table.length); // DEBUG
         int hashIndex = Integer.valueOf(value) % table.length; // Convert string to int.
         return hashIndex;
     }
@@ -126,7 +125,6 @@ public class Hashtable {
         size = 0; // Reset size
 
         for (int i = 0; i < oldTable.length; i++) {
-            //System.out.println("OldTable:" +oldTable[i].getValue()); // DEBUG
             insert(oldTable[i].getValue());
         }
     }
@@ -148,7 +146,6 @@ public class Hashtable {
 
             // Skip empty entries
             if (table[i].getValue() == null) {
-                //System.out.println("EMPTYYYYYY I"); // DEBUG
                 continue;
             } else {
                 int frequency = 0;
@@ -180,7 +177,6 @@ public class Hashtable {
         System.out.println("OR OPERATION");
         for (int i = 0; i < table.length; i++) {
             if (results[i][0] == 0) {
-                //System.out.println("SKIPPISTAE"); // DEBUG
                 continue;
             }
             System.out.println(results[i][0] + " " + results[i][1]);
@@ -213,7 +209,6 @@ public class Hashtable {
                 
                 // If valueString is already in duplicate array, then skip this iteration
                 if (appeared.contains(valueString)) {
-                    //System.out.println("DUPLICATE " + valueString); // DEBUG
                     continue;
                 }
                 appeared.add(valueString);
@@ -227,7 +222,6 @@ public class Hashtable {
         System.out.println("AND OPERATION");
         for (int i = 0; i < table.length; i++) {
             if (results[i][0] == 0) {
-                //System.out.println("SKIPPISTAE"); // DEBUG
                 continue;
             }
             System.out.println(results[i][0] + " " + results[i][1]);
@@ -272,7 +266,6 @@ public class Hashtable {
         System.out.println("XOR OPERATION");
         for (int i = 0; i < table.length; i++) {
             if (results[i][0] == 0) {
-                //System.out.println("SKIPPISTAE"); // DEBUG
                 continue;
             }
             System.out.println(results[i][0] + " " + results[i][1]);
