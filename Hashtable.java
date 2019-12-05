@@ -153,15 +153,12 @@ public class Hashtable {
                 
                 // If valueString is already in duplicate array, then skip this iteration
                 if (duplicates.contains(valueString)) {
-                    //System.out.println("DUPLICATE " + valueString); // DEBUG
                     continue;
                 }
                 duplicates.add(valueString);
     
                 for (int j = 0; j < table.length; j++) { // Check if more instances found
-                    // Skip empty entries
-                    if (table[j].getValue() == null) {
-                        //System.out.println("EMPTYYYYYY J"); // DEBUG
+                    if (table[j].getValue() == null) { // Skip empty entries
                         continue;
                     } else {
                         if (Integer.valueOf((String) table[j].getValue()) == valueInt) {
@@ -238,14 +235,43 @@ public class Hashtable {
      * 
      * @return
      */
-    public int[][] XOR(String[] setA, String[] setB) {
+    public int[][] XOR(List<String> setA, List<String> setB) {
+        int[][] results = new int[table.length][2];
+        List<String> duplicates = new ArrayList<String>(); // For storing duplicates
+        String value;
+
         for (int i = 0; i < table.length; i++) {
-            //if (setA)
+            if (table[i].getValue() == null) { // Null check. Skip this iteration
+                continue;
+            }
+            value = table[i].getValue();
+
+            if (duplicates.contains(value)) { // Check for duplicates
+                continue;
+            }
+
+            duplicates.add(value);
+
+            if (setA.contains(value)) {
+                results[i][0] = Integer.parseInt(value);
+                results[i][1] = 1;
+            }
+            else if (setB.contains(value)) {
+                results[i][0] = Integer.parseInt(value);
+                results[i][1] = 2;
+            }
         }
 
-        // contains - check
-        // Jos A:ssa, niin 1. B niin 2. Jos molemmissa, niin.. Öö...
-        return 0;
+        // Print results
+        System.out.println("XOR OPERATION");
+        for (int i = 0; i < table.length; i++) {
+            if (results[i][0] == 0) {
+                //System.out.println("SKIPPISTAE"); // DEBUG
+                continue;
+            }
+            System.out.println(results[i][0] + " " + results[i][1]);
+        }
+        return results;
     }
 
     /**
