@@ -16,9 +16,7 @@ public class Hashtable {
         table = new Item[capacity];
 
         // Populate the table with empty entries.
-        for (int i = 0; i < table.length; i++) {
-            table[i] = EMPTY;
-        }
+        clear();
     }
 
     public boolean isEmpty() {
@@ -26,6 +24,13 @@ public class Hashtable {
             return true;
 
         return false;
+    }
+
+    // Populates the table with EMPTY items
+    public void clear() {
+        for (int i = 0; i < table.length; i++) {
+            table[i] = EMPTY;
+        }
     }
 
     // Controls how big the resized table should be.
@@ -44,7 +49,11 @@ public class Hashtable {
     
     /*** CLASS METHODS ***/
     
-    // Insertion. Linear probing.
+    /**
+     * Adds parameter value to hash table using linear probing.
+     * Resizes the table if size exceeds capacity.
+     * @param value to add
+     */
     public void insert(String value) {
         int hashIndex = hash(value);
 
@@ -64,7 +73,11 @@ public class Hashtable {
             resize();
         }
     }
-    // Remove. Linear probing.
+
+    /**
+     * Removes the parameter value from hash table using linear probing.
+     * @param value to remove from hash table
+     */
     public void remove(String value) {
         int hashIndex = hash(value);
         int counter = 0; // To prevent infinite loop
@@ -105,6 +118,12 @@ public class Hashtable {
         }
     }
     
+    /**
+     * The first column contains the value of integers in input files
+     * The Second column contains the information how many times an integer appears in input files.
+     * Returns int array in the format [value][how many times occurs]. Duplicates are not entered into this array.
+     * @return int[][]
+     */
     public int[][] OR() {
         int[][] results = new int[table.length][2];
         List<String> duplicates = new ArrayList<String>(); // For storing duplicates
@@ -167,7 +186,9 @@ public class Hashtable {
         return 0;
     }
 
-    // Print table lines [value, value]
+    /**
+     * A small helper to print the hash table.
+     */
     public void printTable() {
         // TODO: Move to try-catch if needed
         if (isEmpty()) { 
