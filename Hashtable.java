@@ -130,8 +130,8 @@ public class Hashtable {
     /**
      * The first column contains the value of integers in input files
      * The Second column contains the information how many times an integer appears in input files.
-     * Returns int array in the format [value][how many times occurs]. Duplicates are not entered into this array.
-     * @return int[][]
+     * Returns int array in the format [value][frequency]. Duplicates are not entered into this array.
+     * @return int[value][frequency]
      */
     public int[][] OR() {
         int[][] results = new int[table.length][2];
@@ -147,7 +147,7 @@ public class Hashtable {
                 //System.out.println("EMPTYYYYYY I"); // DEBUG
                 continue;
             } else {
-                int counter = 0;
+                int frequency = 0;
                 valueString = table[i].getValue();  // Value to check in duplicates
                 valueInt = Integer.valueOf((String) table[i].getValue()); // Value to do the rest with
                 
@@ -165,13 +165,13 @@ public class Hashtable {
                         continue;
                     } else {
                         if (Integer.valueOf((String) table[j].getValue()) == valueInt) {
-                            counter++;
+                            frequency++;
                         }
                     }
                 }
                 results[i][0] = valueInt;
-                results[i][1] = counter;
-                counter = 0; // Reset
+                results[i][1] = frequency;
+                frequency = 0; // Reset
             }
         }
 
@@ -188,8 +188,11 @@ public class Hashtable {
     }
     
     /**
+     * The first column contains the value of integers in input files
+     * The Second column contains the row number where an integer appears the first time.
+     * Returns int array in the format [value][row number]. Duplicates are not entered into this array.
      * 
-     * @return
+     * @return int[value][row number]
      */
     public int[][] AND() {
         int[][] results = new int[table.length][2];
@@ -231,7 +234,17 @@ public class Hashtable {
         return results;
     }
     
-    public int XOR() {
+    /**
+     * 
+     * @return
+     */
+    public int[][] XOR(String[] setA, String[] setB) {
+        for (int i = 0; i < table.length; i++) {
+            //if (setA)
+        }
+
+        // contains - check
+        // Jos A:ssa, niin 1. B niin 2. Jos molemmissa, niin.. Öö...
         return 0;
     }
 

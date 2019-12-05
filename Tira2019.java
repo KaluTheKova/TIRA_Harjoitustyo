@@ -66,41 +66,54 @@ public static void main(String[] args)
 		setA = ht.readInput("setA.txt");
 		setB = ht.readInput("setB.txt");
 
-		//ht.writeOutput();
-
 		Hashtable hashtable = new Hashtable();
+
+
+		/* OR  */
+		// Insert file contents to hashtable
+		for (int i = 0; i < setA.length; i++) {
+			hashtable.insert(setA[i]);
+		}
+		for (int i = 0; i < setB.length; i++) {
+			hashtable.insert(setB[i]);
+		}
+		System.out.println("THE TABLE BEFORE OR() IS:");
+		hashtable.printTable();
+
+		hashtable.OR();
+
+		System.out.println("CLEARING\n");
+		hashtable.clear();
+
+		/* AND */
+
+		System.out.println("Inserting A again\n");
+		for (int i = 0; i < setA.length; i++) {
+			hashtable.insert(setA[i]);
+		}
+
+		System.out.println("THE TABLE BEFORE AND() IS:");
+		hashtable.printTable();
+
+		hashtable.AND();
+		System.out.println("CLEARING\n");
+		hashtable.clear();
+
+		/* XOR */
 
 		// Insert file contents to hashtable
 		for (int i = 0; i < setA.length; i++) {
 			hashtable.insert(setA[i]);
 		}
-		/*
 		for (int i = 0; i < setB.length; i++) {
 			hashtable.insert(setB[i]);
 		}
-		*/
-		System.out.println("\nTHE TABLE IS:");
+
+		System.out.println("THE TABLE BEFORE XOR() IS:");
 		hashtable.printTable();
 
-		hashtable.OR();
-
-		System.out.println("CLEARING");
-		hashtable.clear();
-
-
-
-		System.out.println("Inserting A again");
-		for (int i = 0; i < setA.length; i++) {
-			hashtable.insert(setA[i]);
-		}
-
-		System.out.println("\nTHE TABLE IS:");
-		hashtable.printTable();
-
-
-
-
-
+		// Ohjelma kysyy alkion poistoa ennen tiedostojen kirjoittamista.
+		
 
 
 		/*
