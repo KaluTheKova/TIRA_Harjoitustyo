@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hashtable {
-    // Array based hashtable that uses open addressing for solving collisions.
+    /* Array based hashtable that uses open addressing for solving collisions. */
     
     // Attributes
     Item[] table; // List of Items. Represents our table.
@@ -42,13 +42,16 @@ public class Hashtable {
             table[i] = EMPTY;
         }
     }
-
-    // Controls how big the resized table should be.
-    private void setThreshold(float threshold) {
+    
+    /**
+     * Controls how big the resized table should be.
+     * Formula is: capacity = table.length * threshold
+     * @param threshold
+     */
+    public void setThreshold(float threshold) {
         this.threshold = threshold;
         capacity = (int) (table.length * threshold);
     }
-
       
     // Returns a hash.
     private int hash(String value) {
@@ -57,6 +60,25 @@ public class Hashtable {
 
         int hashIndex = Integer.valueOf(value) % table.length; // Convert string to int.
         return hashIndex;
+    }
+
+    // Increase the table size. 
+    private void resize() {
+        System.out.println("\nRESIZING!\n"); // DEBUG
+        
+        int newSize = 2 * table.length;
+        capacity = (int) (newSize * threshold);
+        Item[] oldTable = table; // Old table from which we'll copy the elements
+
+        table = new Item[capacity]; // Initialise a new table
+        for (int i = 0; i < table.length; i++) { // Populate the new table with empty entries.
+            table[i] = EMPTY;
+        }
+        size = 0; // Reset size
+
+        for (int i = 0; i < oldTable.length; i++) {
+            insert(oldTable[i].getValue());
+        }
     }
     
     /*** CLASS METHODS ***/
@@ -107,25 +129,6 @@ public class Hashtable {
             }
             hashIndex = (hashIndex + 1) % table.length; // Linear probing.
             counter++;
-        }
-    }
-    
-    // Increase the table size. 
-    private void resize() {
-        System.out.println("\nRESIZING!\n"); // DEBUG
-        
-        int newSize = 2 * table.length;
-        capacity = (int) (newSize * threshold);
-        Item[] oldTable = table; // Old table from which we'll copy the elements
-
-        table = new Item[capacity]; // Initialise a new table
-        for (int i = 0; i < table.length; i++) { // Populate the new table with empty entries.
-            table[i] = EMPTY;
-        }
-        size = 0; // Reset size
-
-        for (int i = 0; i < oldTable.length; i++) {
-            insert(oldTable[i].getValue());
         }
     }
     
@@ -288,14 +291,3 @@ public class Hashtable {
         System.out.println(); // Empty linebreak
     }
 }
-
-
-
-//https://dzone.com/articles/custom-hashmap-implementation-in-java
-// https://www.geeksforgeeks.org/implementing-our-own-hash-table-with-separate-chaining-in-java/
-// https://stackoverflow.com/questions/9958216/simple-hashtable-implementation-using-an-array-in-java
-// https://odino.org/this-is-how-a-dumb-hashtable-works/
-// http://www.algolist.net/Data_structures/Hash_table/Dynamic_resizing
-// http://www.algolist.net/Data_structures/Hash_table/Open_addressing
-// https://intelligentjava.wordpress.com/tag/open-addressing/
-// https://www.tutorialspoint.com/data_structures_algorithms/hash_data_structure.htm
