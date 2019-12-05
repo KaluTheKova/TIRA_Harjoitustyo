@@ -11,7 +11,10 @@ public class Hashtable {
     private int size = 0; // To keep track of table's current size.
     private static final Item EMPTY = new Item(null); // Empty item to populate the table.
     
-    // Constructor.
+    /**
+     * Create a new hashtable populated with EMPTY Items.
+     *  Default capacity 10.
+     */
     public Hashtable() {
         table = new Item[capacity];
 
@@ -26,8 +29,11 @@ public class Hashtable {
         return false;
     }
 
-    // Populates the table with EMPTY items
+    /**
+     * Clears the table by populating it with EMPTY Items and resetting size to 0.
+     */
     public void clear() {
+        size = 0;
         for (int i = 0; i < table.length; i++) {
             table[i] = EMPTY;
         }
@@ -42,7 +48,10 @@ public class Hashtable {
       
     // Returns a hash.
     private int hash(String value) {
-        //int hashIndex =  (int) value % table.length; // Convert object to int.
+        if (value == null) // Null check
+            return 0;
+
+        //System.out.println("Hashing " + value + " with table length " + table.length); // DEBUG
         int hashIndex = Integer.valueOf(value) % table.length; // Convert string to int.
         return hashIndex;
     }
@@ -100,7 +109,7 @@ public class Hashtable {
     
     // Increase the table size. 
     private void resize() {
-        System.out.println("RESIZING!"); // DEBUG
+        System.out.println("\nRESIZING!\n"); // DEBUG
         
         int newSize = 2 * table.length;
         capacity = (int) (newSize * threshold);
@@ -178,8 +187,48 @@ public class Hashtable {
         return results;
     }
     
-    public int AND() {
-        return 0;
+    /**
+     * 
+     * @return
+     */
+    public int[][] AND() {
+        int[][] results = new int[table.length][2];
+        List<String> appeared = new ArrayList<String>(); // For storing duplicates
+        String valueString;
+        int valueInt;
+        
+        // Linear approach for now
+        for (int i = 0; i < table.length; i++) {
+
+            // Skip empty entries
+            if (table[i].getValue() == null) {
+                continue;
+            } else {
+                valueString = table[i].getValue();  // Value to check in duplicates
+                valueInt = Integer.valueOf((String) table[i].getValue()); // Value to do the rest with
+                
+                // If valueString is already in duplicate array, then skip this iteration
+                if (appeared.contains(valueString)) {
+                    //System.out.println("DUPLICATE " + valueString); // DEBUG
+                    continue;
+                }
+                appeared.add(valueString);
+    
+                results[i][0] = valueInt;
+                results[i][1] = i; // Row number
+            }
+        }
+
+        // Print results
+        System.out.println("AND OPERATION");
+        for (int i = 0; i < table.length; i++) {
+            if (results[i][0] == 0) {
+                //System.out.println("SKIPPISTAE"); // DEBUG
+                continue;
+            }
+            System.out.println(results[i][0] + " " + results[i][1]);
+        }
+        return results;
     }
     
     public int XOR() {
@@ -192,12 +241,13 @@ public class Hashtable {
     public void printTable() {
         // TODO: Move to try-catch if needed
         if (isEmpty()) { 
-            System.out.println("Error! Table is empty.");
+            System.out.println("Error! The table is empty.");
             return;
         }
         for (int i = 0; i < table.length; i++) {
             System.out.println(table[i].getValue());
         }
+        System.out.println(); // Empty linebreak
     }
 }
 

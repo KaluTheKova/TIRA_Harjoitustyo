@@ -74,15 +74,35 @@ public static void main(String[] args)
 		for (int i = 0; i < setA.length; i++) {
 			hashtable.insert(setA[i]);
 		}
+		/*
 		for (int i = 0; i < setB.length; i++) {
 			hashtable.insert(setB[i]);
 		}
-		System.out.println();
-		System.out.println("THE TABLE IS:");
+		*/
+		System.out.println("\nTHE TABLE IS:");
 		hashtable.printTable();
-		System.out.println();
 
 		hashtable.OR();
+
+		System.out.println("CLEARING");
+		hashtable.clear();
+
+
+
+		System.out.println("Inserting A again");
+		for (int i = 0; i < setA.length; i++) {
+			hashtable.insert(setA[i]);
+		}
+
+		System.out.println("\nTHE TABLE IS:");
+		hashtable.printTable();
+
+
+
+
+
+
+
 		/*
 		hashtable.insert(1);
 		hashtable.insert(2);
