@@ -72,7 +72,8 @@ public class Tira2019
 		System.out.println("THE TABLE BEFORE OR() IS:");
 		hashtable.printTable();
 
-		hashtable.OR();
+		int[][] resultsOR = new int[hashtable.size()][2];
+		resultsOR = hashtable.OR();
 
 		System.out.println("\nCLEARING\n");
 		hashtable.clear();
@@ -87,7 +88,9 @@ public class Tira2019
 		System.out.println("THE TABLE BEFORE AND() IS:");
 		hashtable.printTable();
 
-		hashtable.AND();
+		int[][] resultsAND = new int[hashtable.size()][2];
+		resultsAND = hashtable.AND();
+
 		System.out.println("\nCLEARING\n");
 		hashtable.clear();
 
@@ -104,7 +107,9 @@ public class Tira2019
 		System.out.println("THE TABLE BEFORE XOR() IS:");
 		hashtable.printTable();
 
-		hashtable.XOR(setA, setB);
+		int[][] resultsXOR = new int[hashtable.size()][2];
+		resultsXOR = hashtable.XOR(setA, setB);
+		
 		System.out.println("\nCLEARING\n");
 		hashtable.clear();
 

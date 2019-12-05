@@ -29,6 +29,10 @@ public class Hashtable {
         return false;
     }
 
+    public int size() {
+        return size;
+    }
+
     /**
      * Clears the table by populating it with EMPTY Items and resetting size to 0.
      */
@@ -232,8 +236,10 @@ public class Hashtable {
     }
     
     /**
-     * 
-     * @return
+     * The first column contains the value of integers in input files
+     * The Second column contains 1 if value appears in setA, 2 if value appears in setB.
+     * Note that if value appears in both, it will be marked as 1.
+     * @return int[value][1 or 2]
      */
     public int[][] XOR(List<String> setA, List<String> setB) {
         int[][] results = new int[table.length][2];
