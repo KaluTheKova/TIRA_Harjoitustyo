@@ -105,8 +105,7 @@ public class Hashtable {
         }
     }
     
-    
-    public int OR() {
+    public int[][] OR() {
         int[][] results = new int[table.length][2];
         List<String> duplicates = new ArrayList<String>(); // For storing duplicates
         String valueString;
@@ -157,8 +156,7 @@ public class Hashtable {
             }
             System.out.println(results[i][0] + " " + results[i][1]);
         }
-
-        return 0;
+        return results;
     }
     
     public int AND() {
