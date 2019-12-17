@@ -92,12 +92,9 @@ public class Hashtable {
         int hashIndex = hash(value);
 
         while (true) {          
-            //System.out.println("Hash is: " + hashIndex); // DEBUG
             if (table[hashIndex] == EMPTY || table[hashIndex] == null) {
                 table[hashIndex] = new Item(value);
                 size++;
-                //System.out.println("Inserted: " + value + "\nBreaking."); // DEBUG
-                //System.out.println("Size: " + size + "\n"); // DEBUG
                 break;
             }
             hashIndex = (hashIndex + 1) % table.length; // Linear probing.
